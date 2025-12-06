@@ -1,18 +1,29 @@
-class User {
-    name: string = "";
-    age: number = 0;
+class User{
+    name: string;
+    #age: number;
+    //private age :number;
+    //protected age :number;
 
-    isAdult(): boolean {
-        return this.age >= 20;
+    constructor(name:string, age:number) {
+        this.name = name;
+        this.#age = age;
     }
 
-    setAge(newAge: number) {
-        this.age = newAge;
+    public isAdult():boolean {
+        return this.#age >= 20;
+    } 
+}
+
+class PremiumUser extends User {
+    rank: number = 1;
+
+    public isAdult(): boolean {
+        return true;
     }
 }
 
-const uhyo = new User();
-console.log(uhyo.isAdult());
+const john = new User("John Smith", 15);
+const hong = new PremiumUser("Hong gildong", 15);
 
-uhyo.setAge(26);
-console.log(uhyo.isAdult());
+console.log(john.isAdult())
+console.log(hong.isAdult())
